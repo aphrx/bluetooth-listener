@@ -1,4 +1,4 @@
-import java.io.*;
+	import java.io.*;
 
 public class BluetoothListener {
 	public static void main(String args[]){
@@ -19,9 +19,15 @@ public class BluetoothListener {
 			if(conn == 0){
 				System.out.println("Connection to headunit was not successful!");
 			}
+
+                        
 		} 
 		catch (IOException e) {
 			System.out.println(e);
-		}	
+		}
+
+		System.out.println(conn);
+		
 	}
+
 }
