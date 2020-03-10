@@ -1,10 +1,24 @@
-	import java.io.*;
+package com.qac.sensors.pysical;
 
-public class BluetoothListener {
-	public static void main(String args[]){
+import java.io.*;
+import com.qac.sensors.Sensor;
 
-		String s = null;
-		int conn = 0;
+public class BluetoothListener extends Sensor<Boolean>{
+	private static final int ID = 5;
+	
+	String s = null;
+	boolean conn = false;
+
+	public BluetoothListener(){
+		super(ID);
+	}
+
+	@Override
+	public void init() {
+	}
+
+	@Override
+	public Boolean getReading(){
 
 		try {
 			Process p = Runtime.getRuntime().exec("hcitool con");	
@@ -13,10 +27,10 @@ public class BluetoothListener {
 			while((s = stdInput.readLine()) != null){
 				if(s.contains("00:15:83:00:43:EC")){
 					System.out.println("Connection to headunit was successful!");
-					conn++;
+					conn = true;
 				}
 			}
-			if(conn == 0){
+			if(conn == false){
 				System.out.println("Connection to headunit was not successful!");
 			}
 
@@ -26,7 +40,7 @@ public class BluetoothListener {
 			System.out.println(e);
 		}
 
-		System.out.println(conn);
+		return conn;
 		
 	}
 
